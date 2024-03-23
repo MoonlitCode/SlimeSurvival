@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://boshwxkl1ohdm"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://d4awwn3h1we8w" path="res://Scenes/PhysMat_Slide.tres" id="1_heyop"]
+[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://Import/trees/pine_tree.png" id="1_i3c2t"]
+[ext_resource type="Texture2D" uid="uid://b7rhtttevhxtj" path="res://Import/characters/ground_shadow.png" id="1_q3k8x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p1lme"]
+radius = 17.0
+height = 40.0
+
+[node name="Envi_Tree" type="StaticBody2D"]
+physics_material_override = ExtResource("1_heyop")
+
+[node name="Sprite_Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.356863, 0.603922, 0.384314, 1)
+z_index = -10
+scale = Vector2(0.615385, 0.615385)
+texture = ExtResource("1_q3k8x")
+
+[node name="Sprite_Tree" type="Sprite2D" parent="."]
+position = Vector2(-1, -69)
+texture = ExtResource("1_i3c2t")
+
+[node name="CollisionShape_Tree" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_p1lme")

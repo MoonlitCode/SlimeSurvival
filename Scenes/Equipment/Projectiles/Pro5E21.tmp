@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvjeclnm6u5e1"]
+
+[ext_resource type="Script" path="res://Scripts/ProjectileBullet.cs" id="1_btnkp"]
+[ext_resource type="Texture2D" uid="uid://dftkbqwsfd68r" path="res://Import/pistol/projectile.png" id="1_lg3dv"]
+[ext_resource type="PackedScene" path="res://Scenes/Systems/HealthSystem.tscn" id="3_2hrhv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tjdt7"]
+radius = 18.0
+
+[node name="Projectile_Bullet" type="Area2D" node_paths=PackedStringArray("_healthSystem")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_btnkp")
+_healthSystem = NodePath("HealthSystem")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-11, -1)
+texture = ExtResource("1_lg3dv")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tjdt7")
+
+[node name="HealthSystem" parent="." instance=ExtResource("3_2hrhv")]
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c85fedmh4jq0f"]
+
+[ext_resource type="Script" path="res://Scripts/Systems/Health/HealthSystem.cs" id="1_ereey"]
+[ext_resource type="Script" path="res://Scripts/Characters/Controllers/CharacterController2DSlime.cs" id="1_q828o"]
+[ext_resource type="Script" path="res://Scripts/Placeholder.cs" id="2_68slu"]
+[ext_resource type="Script" path="res://Scripts/Characters/Animators/CharacterAnimator2D.cs" id="2_syuf7"]
+[ext_resource type="PackedScene" uid="uid://ogik4s70pgwl" path="res://Import/characters/slime/slime.tscn" id="3_oll34"]
+[ext_resource type="Texture2D" uid="uid://b37ygnoyx3d0f" path="res://Import/characters/slime/flower.png" id="6_g06wa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_numw4"]
+radius = 36.0
+
+[node name="Character_Slime" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("1_ereey")
+_maxHealth = 3.0
+
+[node name="Scripts" type="Node" parent="."]
+script = ExtResource("2_68slu")
+
+[node name="CharacterController2DSlime" type="Node" parent="Scripts" node_paths=PackedStringArray("_healthSystem", "characterBody2D", "characterAnimator2D")]
+script = ExtResource("1_q828o")
+_healthSystem = NodePath("../../HealthSystem")
+characterBody2D = NodePath("../..")
+characterAnimator2D = NodePath("../CharacterAnimator2D")
+_moveSpeed = 150.0
+
+[node name="CharacterAnimator2D" type="Node" parent="Scripts" node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("2_syuf7")
+_animationPlayer = NodePath("../../Visual_Slime/AnimationPlayer")
+
+[node name="Visual_Slime" parent="." instance=ExtResource("3_oll34")]
+
+[node name="GroundShadow" parent="Visual_Slime" index="0"]
+modulate = Color(0.356863, 0.603922, 0.384314, 1)
+
+[node name="Flower" type="Sprite2D" parent="Visual_Slime/Anchor/Face" index="0"]
+position = Vector2(1, -15)
+texture = ExtResource("6_g06wa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -36)
+rotation = -1.5708
+shape = SubResource("CircleShape2D_numw4")
+
+[editable path="Visual_Slime"]

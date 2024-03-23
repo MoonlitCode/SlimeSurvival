@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqqgjlfjuo2h2"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/SpawnPoints.cs" id="1_kq32s"]
+[ext_resource type="Texture2D" uid="uid://i4cjdwy1kcoj" path="res://Import/icon.png" id="2_oh8h8"]
+
+[node name="SpawnPoints" type="Node2D" node_paths=PackedStringArray("_spawnPoints")]
+script = ExtResource("1_kq32s")
+_spawnPoints = [NodePath("Point_0"), NodePath("Point_1"), NodePath("Point_2"), NodePath("Point_3")]
+_rotationSpeed = 1.5
+
+[node name="Point_0" type="Node2D" parent="."]
+position = Vector2(0, -1200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Point_0"]
+texture = ExtResource("2_oh8h8")
+
+[node name="Point_1" type="Node2D" parent="."]
+position = Vector2(0, 1200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Point_1"]
+rotation = -3.14159
+texture = ExtResource("2_oh8h8")
+
+[node name="Point_2" type="Node2D" parent="."]
+position = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Point_2"]
+rotation = 1.5708
+texture = ExtResource("2_oh8h8")
+
+[node name="Point_3" type="Node2D" parent="."]
+position = Vector2(-1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Point_3"]
+rotation = -1.5708
+texture = ExtResource("2_oh8h8")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwkr4qh0jqh0a"]
+
+[ext_resource type="Script" path="res://Scripts/DEV/DisplayInputVector.cs" id="1_sjacl"]
+
+[node name="DisplayInputVector" type="Control" node_paths=PackedStringArray("_textLabel")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sjacl")
+_textLabel = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 91.0
+offset_bottom = 40.0
+text = "Vector2: (0, 0)"
+fit_content = true
+autowrap_mode = 0
+tab_size = 0

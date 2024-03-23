@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://bi1rr42fwmjol"]
+
+[ext_resource type="PackedScene" uid="uid://dwkr4qh0jqh0a" path="res://Scenes/_DEV/DisplayInputVector.tscn" id="1_7m6vd"]
+[ext_resource type="Script" path="res://Scripts/Game.cs" id="1_s8v2b"]
+[ext_resource type="Script" path="res://Scripts/FunctionQuickRestart.cs" id="1_ws61p"]
+[ext_resource type="PackedScene" uid="uid://boshwxkl1ohdm" path="res://Scenes/Environment/Envi_Tree.tscn" id="2_0oejc"]
+[ext_resource type="PackedScene" uid="uid://bvtc8leuljq6k" path="res://Scenes/Characters/Character_HappyBoo.tscn" id="3_p21kj"]
+[ext_resource type="PackedScene" uid="uid://c85fedmh4jq0f" path="res://Scenes/Characters/Character_Slime.tscn" id="4_vdgwn"]
+[ext_resource type="Script" path="res://Scripts/Characters/SpawnTimer.cs" id="5_xfye3"]
+[ext_resource type="PackedScene" uid="uid://bqqgjlfjuo2h2" path="res://Scenes/Characters/SpawnPoints.tscn" id="7_f3y3p"]
+[ext_resource type="PackedScene" uid="uid://b3oxrkiymku4p" path="res://Scenes/_DEV/DisplayGameOver.tscn" id="9_x5565"]
+
+[node name="Room_Game" type="Node2D" node_paths=PackedStringArray("_playerCharacterBody2D", "_healthSystem", "_spawnTimer", "_spawnPoints", "_displayGameOver")]
+y_sort_enabled = true
+script = ExtResource("1_s8v2b")
+_playerCharacterBody2D = NodePath("Character_HappyBoo")
+_healthSystem = NodePath("Character_HappyBoo/Scripts/HealthSystem")
+_spawnTimer = NodePath("SpawnTimer")
+_spawnPoints = NodePath("SpawnPoints")
+_displayGameOver = NodePath("UI_Display/DisplayGameOver")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="UI_Background" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="UI_Background"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.486275, 0.772549, 0.513726, 1)
+
+[node name="FunctionQuickRestart" type="Node" parent="."]
+script = ExtResource("1_ws61p")
+
+[node name="SpawnTimer" type="Node" parent="."]
+script = ExtResource("5_xfye3")
+_timerValue = 1.65
+
+[node name="SpawnPoints" parent="." instance=ExtResource("7_f3y3p")]
+position = Vector2(960, 540)
+
+[node name="Character_HappyBoo" parent="." instance=ExtResource("3_p21kj")]
+position = Vector2(960, 540)
+
+[node name="DamageOverTime" parent="Character_HappyBoo/Scripts/HealthSystem" index="0"]
+_damageAmount = 6.0
+
+[node name="Character_Slime" parent="." instance=ExtResource("4_vdgwn")]
+position = Vector2(663, 539)
+
+[node name="Character_Slime2" parent="." instance=ExtResource("4_vdgwn")]
+position = Vector2(730, 321)
+
+[node name="Character_Slime3" parent="." instance=ExtResource("4_vdgwn")]
+position = Vector2(984, 219)
+
+[node name="Environment" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Envi_Tree" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(534, 171)
+
+[node name="Envi_Tree2" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(297, 262)
+
+[node name="Envi_Tree3" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(439, 416)
+
+[node name="Envi_Tree4" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(272, 709)
+
+[node name="Envi_Tree5" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(1720, 247)
+
+[node name="Envi_Tree6" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(1379, 762)
+
+[node name="Envi_Tree7" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(1759, 992)
+
+[node name="Envi_Tree8" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(1715, 644)
+
+[node name="Envi_Tree9" parent="Environment" instance=ExtResource("2_0oejc")]
+position = Vector2(721, 1014)
+
+[node name="UI_Display" type="Control" parent="."]
+process_mode = 4
+clip_children = 2
+layout_mode = 3
+anchors_preset = 0
+
+[node name="DisplayInputVector" parent="UI_Display" instance=ExtResource("1_7m6vd")]
+process_mode = 4
+visible = false
+
+[node name="DisplayGameOver" parent="UI_Display" instance=ExtResource("9_x5565")]
+z_as_relative = false
+
+[editable path="Character_HappyBoo"]
+[editable path="Character_HappyBoo/Visual_HappyBoo"]
